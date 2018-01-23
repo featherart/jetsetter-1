@@ -5,6 +5,7 @@ import Filter from './Filter';
 class Items extends Component {
   state = {
     // What state does this component have?
+    items: [],
   };
 
   updateSearchTerm = searchTerm => {};

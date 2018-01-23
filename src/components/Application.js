@@ -23,6 +23,7 @@ const defaultState = [
 class Application extends Component {
   state = {
     // Set the initial state,
+    items: defaultState
   };
 
   // How are we going to manipualte the state?
@@ -31,13 +32,16 @@ class Application extends Component {
 
   render() {
     // Get the items from state
+    const { items } = this.state;
+    const unpackedItems = items.filter(item => !item.packed);
+    const packedItems = items.filter(item => item.packed);
 
     return (
       <div className="Application">
         <NewItem />
         <CountDown />
-        <Items title="Unpacked Items" items={[]} />
-        <Items title="Packed Items" items={[]} />
+        <Items title="Unpacked Items" items={unpackedItems} />
+        <Items title="Packed Items" items={packedItems} />
         <button className="button full-width">Mark All As Unpacked</button>
       </div>
     );
