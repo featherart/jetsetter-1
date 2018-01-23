@@ -5,10 +5,12 @@ import Filter from './Filter';
 class Items extends Component {
   state = {
     // What state does this component have?
-    items: [],
+    searchTerm: '',
   };
 
-  updateSearchTerm = searchTerm => {};
+  updateSearchTerm = searchTerm => {
+    this.setState({ searchTerm })
+  };
 
   render() {
     const { title, items, onRemove, onToggle } = this.props;
@@ -17,12 +19,12 @@ class Items extends Component {
         <h2>
           {title} ({items.length})
         </h2>
-        <Filter searchTerm={''} onChange={this.updateSearchTerm} />
+        <Filter searchTerm={this.state.searchTerm} onChange={this.updateSearchTerm} />
         {items
           .filter(item =>
 
             // Hmm… this needs some work.
-            item.value ? item.value.toLowerCase().includes(''.toLowerCase()) : ''
+            item.value ? item.value.toLowerCase().includes(this.state.searchTerm.toLowerCase()) : ''
           )
           .map(item => (
             <Item
