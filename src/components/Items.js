@@ -20,13 +20,14 @@ class Items extends Component {
         <Filter searchTerm={''} onChange={this.updateSearchTerm} />
         {items
           .filter(item =>
+
             // Hmm… this needs some work.
-            item.value.toLowerCase().includes(''.toLowerCase()),
+            item.value ? item.value.toLowerCase().includes(''.toLowerCase()) : ''
           )
           .map(item => (
             <Item
               key={item.id}
-              onToggle={() => onToggle(item)}
+              onToggle={onToggle}
               onRemove={() => onRemove(item)}
               item={item}
             />
