@@ -26,6 +26,10 @@ class Application extends Component {
     items: defaultState
   };
 
+  addItem = (item) => {
+    this.setState({ items: [item, ...this.state.items] })
+  }
+
   // How are we going to manipualte the state?
   // Ideally, users are going to want to add, remove,
   // and check off items, right?
@@ -38,7 +42,7 @@ class Application extends Component {
 
     return (
       <div className="Application">
-        <NewItem />
+        <NewItem onSubmit={this.addItem}/>
         <CountDown />
         <Items title="Unpacked Items" items={unpackedItems} />
         <Items title="Packed Items" items={packedItems} />
